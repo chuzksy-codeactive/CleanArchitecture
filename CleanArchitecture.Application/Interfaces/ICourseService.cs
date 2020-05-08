@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CleanArchitecture.Application.Interfaces
 {
-    interface ICourseService
+    public interface ICourseService
     {
         CourseVeiwModel GetCourses();
     }
