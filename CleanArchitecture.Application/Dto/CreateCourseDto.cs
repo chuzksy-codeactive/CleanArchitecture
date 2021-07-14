@@ -1,8 +1,7 @@
-﻿namespace CleanArchitecture.Domain.Models
+﻿namespace CleanArchitecture.Application.Dto
 {
-    public class Course
+    public class CreateCourseDto
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }

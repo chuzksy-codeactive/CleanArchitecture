@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Domain.Models
+﻿namespace CleanArchitecture.Application.Dto
 {
-    public class Course
+    public class CourseDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

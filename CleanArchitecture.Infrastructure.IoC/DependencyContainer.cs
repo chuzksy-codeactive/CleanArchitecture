@@ -1,8 +1,9 @@
-﻿using CleanArchitecture.Application.Services;
-using CleanArchitecture.Application.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
+﻿using CleanArchitecture.Application.Interfaces;
+using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Interfaces;
 using CleanArchitecture.Infrastructure.Data.Repository;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace CleanArchitecture.Infrastructure.IoC
 {
@@ -15,6 +16,7 @@ namespace CleanArchitecture.Infrastructure.IoC
 
             // Infrastructure.Data Layer
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }

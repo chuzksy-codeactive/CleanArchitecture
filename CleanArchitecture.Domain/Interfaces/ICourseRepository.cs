@@ -1,12 +1,13 @@
 ﻿using CleanArchitecture.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Domain.Interfaces
 {
     public interface ICourseRepository
     {
-        IEnumerable<Course> GetCourses();
+        Task<IEnumerable<Course>> GetCoursesAsync();
+        Task<Course> CreateCourseAsync(Course course);
+        Task<bool> CourseExistAsync(int id);
     }
 }

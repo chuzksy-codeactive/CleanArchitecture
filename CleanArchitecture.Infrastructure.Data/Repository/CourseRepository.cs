@@ -1,9 +1,10 @@
 ﻿using CleanArchitecture.Domain.Interfaces;
 using CleanArchitecture.Domain.Models;
 using CleanArchitecture.Infrastructure.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Data.Repository
 {
@@ -15,9 +16,26 @@ namespace CleanArchitecture.Infrastructure.Data.Repository
             _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
 
-        public IEnumerable<Course> GetCourses()
+        public async Task<bool> CourseExistAsync(int id)
         {
-            return _ctx.Courses;
+            var course = await _ctx.Courses.FindAsync(id);
+
+            if (course == null) return false;
+
+            return true;
+        }
+
+        public async Task<Course> CreateCourseAsync(Course course)
+        {
+            await _ctx.Courses.AddAsync(course);
+            await _ctx.SaveChangesAsync();
+
+            return course;
+        }
+
+        public async Task<IEnumerable<Course>> GetCoursesAsync()
+        {
+            return await _ctx.Courses.ToListAsync();
         }
     }
 }
