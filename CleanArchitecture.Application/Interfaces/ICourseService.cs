@@ -9,5 +9,6 @@ namespace CleanArchitecture.Application.Interfaces
     {
         Task<SuccessResponse<IEnumerable<CourseDto>>> GetCoursesAsync();
         Task<SuccessResponse<CourseDto>> CreateCoursesAsync(CreateCourseDto course);
+        Task<SuccessResponse<CourseDto>> UpdateCourseAsync(int id, UpdateCourseDto course);
     }
 }

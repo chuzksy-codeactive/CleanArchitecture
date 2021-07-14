@@ -10,6 +10,7 @@ namespace CleanArchitecture.Application.Mapper
         {
             CreateMap<Course, CreateCourseDto>().ReverseMap();
             CreateMap<CourseDto, Course>().ReverseMap();
+            CreateMap<Course, UpdateCourseDto>().ReverseMap();
         }
     }
 }

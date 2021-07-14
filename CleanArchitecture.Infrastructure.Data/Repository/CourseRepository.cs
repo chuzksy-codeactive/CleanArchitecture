@@ -16,13 +16,13 @@ namespace CleanArchitecture.Infrastructure.Data.Repository
             _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
 
-        public async Task<bool> CourseExistAsync(int id)
+        public async Task<Course> CourseExistAsync(int id)
         {
             var course = await _ctx.Courses.FindAsync(id);
 
-            if (course == null) return false;
+            if (course == null) return null;
 
-            return true;
+            return course;
         }
 
         public async Task<Course> CreateCourseAsync(Course course)
@@ -36,6 +36,13 @@ namespace CleanArchitecture.Infrastructure.Data.Repository
         public async Task<IEnumerable<Course>> GetCoursesAsync()
         {
             return await _ctx.Courses.ToListAsync();
+        }
+
+        public async Task<Course> UpdateCourseAsync(Course course)
+        {
+            await _ctx.SaveChangesAsync();
+
+            return course;
         }
     }
 }

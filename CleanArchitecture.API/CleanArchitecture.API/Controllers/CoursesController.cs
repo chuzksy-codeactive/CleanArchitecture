@@ -12,7 +12,7 @@ namespace CleanArchitecture.API.Controllers
     ///     Controller for <see cref="CoursesController" />s.
     /// </summary>
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/courses")]
     public class CoursesController : ControllerBase
     {
         private readonly ICourseService _courseService;
@@ -43,7 +43,7 @@ namespace CleanArchitecture.API.Controllers
         }
 
         /// <summary>
-        ///    Creates a new applicant.
+        ///    Creates a new course.
         /// </summary>
         /// <param name="course">The course model to create</param>
         /// <returns><see cref="ActionResult"/></returns>
@@ -55,6 +55,24 @@ namespace CleanArchitecture.API.Controllers
         public async Task<IActionResult> CreateCourse(CreateCourseDto course)
         {
             var response = await _courseService.CreateCoursesAsync(course);
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        ///    Update a course.
+        /// </summary>
+        /// <param name="course">The course model to update</param>
+        /// <param name="id">The course Id to update</param>
+        /// <returns><see cref="ActionResult"/></returns>
+        /// <response code="200">
+        /// Course successfully updated
+        /// </response>
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(SuccessResponse<CourseDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> CreateCourse(UpdateCourseDto course, int id)
+        {
+            var response = await _courseService.UpdateCourseAsync(id, course);
 
             return Ok(response);
         }

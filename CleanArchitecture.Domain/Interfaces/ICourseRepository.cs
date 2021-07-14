@@ -8,6 +8,7 @@ namespace CleanArchitecture.Domain.Interfaces
     {
         Task<IEnumerable<Course>> GetCoursesAsync();
         Task<Course> CreateCourseAsync(Course course);
-        Task<bool> CourseExistAsync(int id);
+        Task<Course> CourseExistAsync(int id);
+        Task<Course> UpdateCourseAsync(Course course);
     }
 }

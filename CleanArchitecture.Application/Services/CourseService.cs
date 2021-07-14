@@ -30,7 +30,7 @@ namespace CleanArchitecture.Application.Services
 
             return new SuccessResponse<CourseDto>
             {
-                Message = "Course successfully created",
+                Message = "Course successfully created.",
                 Data = result
             };
         }
@@ -42,7 +42,24 @@ namespace CleanArchitecture.Application.Services
 
             return new SuccessResponse<IEnumerable<CourseDto>>
             {
-                Message = "Courses successfully retrieved",
+                Message = "Courses successfully retrieved.",
+                Data = result
+            };
+        }
+
+        public async Task<SuccessResponse<CourseDto>> UpdateCourseAsync(int id, UpdateCourseDto courseDto)
+        {
+            var entity = await _courseRepository.CourseExistAsync(id);
+
+            if (entity == null) throw new RestException(HttpStatusCode.NotFound, $"Course with Id: {id} not found");
+
+            _mapper.Map(courseDto, entity);
+            var course = await _courseRepository.UpdateCourseAsync(entity);
+            var result = _mapper.Map<CourseDto>(course);
+
+            return new SuccessResponse<CourseDto>
+            {
+                Message = "Course successfully updated.",
                 Data = result
             };
         }
